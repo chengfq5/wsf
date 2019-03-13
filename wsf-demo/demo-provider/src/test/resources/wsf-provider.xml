@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:wsf="https://www.xw.com/schema/wsf"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       https://www.xw.com/schema/wsf https://www.xw.com/schema/wsf/rpc-core.xsd">
+
+    <!-- 应用 -->
+    <wsf:application name="RPC_PROVIDER"/>
+
+    <!--服务-->
+    <wsf:server port="9203"/>
+
+    <!-- 注册中心 -->
+    <wsf:register type="zookeeper" address="192.168.2.240:2181"/>
+
+    <!-- User服务 -->
+    <wsf:service id="userService" interface="com.wsf.demo.service.UserService" ref="userServiceImpl"/>
+    <bean id="userServiceImpl" class="com.wsf.demo.provider.service.impl.UserServiceImpl"/>
+</beans>

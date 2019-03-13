@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:wsf="https://www.xw.com/schema/wsf"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       https://www.xw.com/schema/wsf https://www.xw.com/schema/wsf/rpc-core.xsd">
+
+    <!-- 应用 -->
+    <wsf:application name="RPC_CONSUMBER"/>
+
+    <!--服务-->
+    <wsf:client load_balance="poll"/>
+
+    <!-- 注册中心 -->
+    <wsf:register type="zookeeper" address="192.168.2.240:2181"/>
+
+    <!-- 引用服务 -->
+    <wsf:refrence id="userService" interface="com.wsf.demo.service.UserService" timeout="30000" async="false" />
+</beans>

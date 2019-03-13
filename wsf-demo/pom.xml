@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>wsf</artifactId>
+        <groupId>com.wsf</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>wsf-demo</artifactId>
+    <packaging>pom</packaging>
+    <name>WSF-DEMO</name>
+    <modules>
+        <module>demo-interface</module>
+        <module>demo-provider</module>
+        <module>demo-consumer</module>
+    </modules>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <compiler.level>1.8</compiler.level>
+        <wsf.core.version>1.0-SNAPSHOT</wsf.core.version>
+        <wsf.transport.version>1.0-SNAPSHOT</wsf.transport.version>
+        <wsf.serializer.version>1.0-SNAPSHOT</wsf.serializer.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.wsf</groupId>
+                <artifactId>wsf-core</artifactId>
+                <version>${wsf.core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.wsf</groupId>
+                <artifactId>wsf-transport</artifactId>
+                <version>${wsf.transport.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.wsf</groupId>
+                <artifactId>wsf-serializer</artifactId>
+                <version>${wsf.serializer.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+
+</project>
