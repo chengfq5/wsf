@@ -5,6 +5,7 @@ import com.wsf.demo.service.UserService;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.util.StringUtils;
 
 import java.io.IOException;
 import java.util.concurrent.FutureTask;
@@ -28,8 +29,8 @@ public class ConsumerTest {
         AtomicInteger ao = new AtomicInteger(0);
         SimpleExecutor sim = new SimpleExecutor(() -> {
             int i = ao.incrementAndGet();
-            boolean s = userService.existsMobileNo("18601720063");
-            if (!s) {
+            String s = userService.sayHello("abc");
+            if (StringUtils.isEmpty(s)) {
                 System.out.println(s);
                 new RuntimeException();
             }
@@ -38,9 +39,9 @@ public class ConsumerTest {
     }
 
     @Test
-    public void test_ansy() throws Exception{
+    public void test_ansy() throws Exception {
         UserService userService = applicationContext.getBean("userService", UserService.class);
-        userService.existsMobileNo("18601720063");
+        userService.sayHello("abc");
         FutureTask<Object> futureTask = RpcContext.getFutureTask().get();
         System.out.println(futureTask.get(5, TimeUnit.SECONDS));
     }
