@@ -24,8 +24,6 @@ public class ConsumerTest {
     @Test
     public void test() throws IOException {
         UserService userService = applicationContext.getBean("userService", UserService.class);
-        //System.out.println(userService.existsMobileNo("18601720063"));
-        //System.out.println(userService.existsMobileNo("18601720062"));
         AtomicInteger ao = new AtomicInteger(0);
         SimpleExecutor sim = new SimpleExecutor(() -> {
             int i = ao.incrementAndGet();
