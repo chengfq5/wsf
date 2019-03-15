@@ -12,6 +12,10 @@ public class ClientChannelPool {
 
     private static Map<String, ClientChannel> channelMap = Maps.newConcurrentMap();
 
+    public static Map<String, ClientChannel> getLocks(){
+        return ClientChannelPool.channelMap;
+    }
+
     public static void put(String key, ClientChannel channel) {
         channelMap.put(key, channel);
     }

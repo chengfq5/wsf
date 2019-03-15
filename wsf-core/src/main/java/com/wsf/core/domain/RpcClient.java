@@ -56,12 +56,17 @@ public class RpcClient {
             String channelKey = refrence.getInterfaceName() + "_" + remoteIp + "_" + remotePort;
             clientChannel = ClientChannelPool.get(channelKey);
             if (clientChannel == null) {
-                clientChannel = ServiceLoadUtil.getProvider(ClientChannel.class);
-                ClientMessageHandler clientMessageHandler = new ClientMessageHandlerImpl(clientChannel, refrence.getTimeout());
-                Serializer serializer = ServiceLoadUtil.getProvider(Serializer.class);
-                clientChannel.start(channelKey, clientMessageHandler, serializer, InetSocketAddress.createUnresolved(remoteIp, remotePort), refrence.getTimeout());
-                ClientChannelPool.put(channelKey, clientChannel);
-                logger.info("连接远程服务[{}]成功", channelKey);
+                synchronized (ClientChannelPool.getLocks()) {
+                    clientChannel = ClientChannelPool.get(channelKey);
+                    if (clientChannel == null) {
+                        clientChannel = ServiceLoadUtil.getProvider(ClientChannel.class);
+                        ClientMessageHandler clientMessageHandler = new ClientMessageHandlerImpl(clientChannel, refrence.getTimeout());
+                        Serializer serializer = ServiceLoadUtil.getProvider(Serializer.class);
+                        clientChannel.start(channelKey, clientMessageHandler, serializer, InetSocketAddress.createUnresolved(remoteIp, remotePort), refrence.getTimeout());
+                        ClientChannelPool.put(channelKey, clientChannel);
+                        logger.info("连接远程服务[{}]成功", channelKey);
+                    }
+                }
             }
 
         } catch (Exception e) {
