@@ -21,7 +21,7 @@
         <compiler.level>1.8</compiler.level>
         <plugin.compiler.version>3.2</plugin.compiler.version>
         <plugin.surefire.version>2.18.1</plugin.surefire.version>
-        <spring.version>4.2.6.RELEASE</spring.version>
+        <spring.version>5.2.22.RELEASE</spring.version>
         <junit.version>4.11</junit.version>
         <log4j.version>1.2.17</log4j.version>
         <lombok.version>1.16.8</lombok.version>
